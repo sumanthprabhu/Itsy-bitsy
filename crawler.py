@@ -15,13 +15,15 @@ class Crawler:
 
 	def __init__(self, url):
 		''' Initialize URL queue '''
+
 		self.url_queue = [url]
 		self.hosts = {}
 		self.bloomfilter = [0] * 512
 
 	def de_ja_vu(self, url):
-		''' Checks if URL is already parsed'''
-		'''
+
+		''' Checks if URL is already parsed
+		
 			number of hash functions = 3
 			number of URLs = 100
 			number of bits = 512
@@ -49,12 +51,15 @@ class Crawler:
 
 	def extract_host(self, url):
 		''' Extract the host '''
+
 		#extract host
 		host = re.match(r'https?://[^/]+((?=/)|$)', url)
 		host = host.group()
+		
 		if host == url:
 			#path is empty
 			path = "/"
+		
 		else:
 			path = url[len(host) + 1:]
 
@@ -63,6 +68,7 @@ class Crawler:
 
 	def md5_generate(self, host, path):
 		''' Generate md5 '''
+		
 		m1 = hashlib.md5()
 		m1.update(host)
 		m1 = m1.hexdigest()
@@ -71,6 +77,7 @@ class Crawler:
 		m2 = hashlib.md5()
 		m2.update(host + path)
 		m2 = m2.hexdigest()
+		
 		return (m1, m2)
 
 
@@ -78,6 +85,7 @@ class Crawler:
 		''' Check if bot is allowed by that host'''
 
 		found = self.de_ja_vu(url)
+		
 		if found: 
 			#URL has been parsed before do not parse the URL
 			msg = url + " has been parsed previously"
@@ -286,6 +294,7 @@ def main():
 	
 	else:
 		c = Crawler(url)
+		
 		#set limit to 100
 		c.crawl(100)
 	
