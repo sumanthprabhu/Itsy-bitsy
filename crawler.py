@@ -30,7 +30,7 @@ class Crawler:
 			number of bits = 512
 
 			Probability of a false positive = (1 - e ^ (-3 * 100 / 512)) ** 3
-											= 0.0872
+							= 0.0872
 		'''
 
 		h1 = int(hashlib.sha256(url).hexdigest(), base=16) % 512
@@ -226,7 +226,7 @@ class Crawler:
 					md5_host, md5_url = self.md5_generate(host, path)
 					
 					response = self.is_safe(href, host, path, 
-												md5_host, md5_url)
+								md5_host, md5_url)
 
 					if response[0]:
 						if (crawl_count + len(self.url_queue)) <= limit:
@@ -258,7 +258,7 @@ class Crawler:
 					md5_host, md5_url = self.md5_generate(host, path)
 
 					response = self.is_safe(current_url, host, path, 
-											md5_host, md5_url)
+								md5_host, md5_url)
 			
 					if response[0]:
 						if (crawl_count + len(self.url_queue)) <= limit:
