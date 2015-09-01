@@ -14,7 +14,8 @@ class Crawler:
 	''' The Crawler class '''
 
 	def __init__(self, url):
-		''' Initialize URL queue '''
+		''' Initialize URL queue 
+		'''
 
 		self.url_queue = [url]
 		self.hosts = {}
